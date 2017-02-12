@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+
+\usepackage{booktabs}
+\usepackage[table,x11names,dvipsnames,table]{xcolor}
+\usepackage[scientific-notation=true]{siunitx} 
+\usepackage{graphicx} 
+\usepackage{natbib} 
+\usepackage{amsmath} 
+\usepackage[spanish,activeacute]{babel}
+\usepackage{float}
+\usepackage[table]{xcolor}
+\usepackage{anysize}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pdfpages}
+\marginsize{1in}{1in}{1in}{1in} 
+\usepackage{enumerate}
+\setlength\parindent{30pt}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%\setlength\parindent{0pt} 
+
+\renewcommand{\labelenumi}{\alph{enumi}.}
+
+\newcolumntype{a}{>{\columncolor[gray]{0.9}}c}
+
+
+%-----------------------------------------------------------
+\begin{document}
+%------------------------------------------------------------
+    \begin{center}
+
+
+\includegraphics[width=0.3\textwidth]{unison-logo.png}~\\[1cm]
+
+\textsc{\LARGE Universidad de Sonora}\\[0.1cm]
+\textsc{Divisi\'on de Ciencias Exactas y Naturales}\\[0.1cm]
+\textsc{Departamento de F\'isica}\\[1.5cm]
+
+\HRule \\[0.4cm]
+\textsc{Física computacional I}\\[0.1cm]
+\textsc{Actividad 1- La estructura de la atmósfera}
+\HRule \\[1.5cm]
+
+
+\textsc{Jessica Isamar Uriarte García\\[1.0cm]}
+
+\textsc{Docente:\\Carlos Lizarraga-Celaya\\[0.1cm]}
+\vfill
+\textsc{\today \\[0.1cm]}
+    \end{center}
+\newpage
+
+%------------------------------------------------------------
+        \section{Introducción}
+\marginpar{\includegraphics[width=0.09\textwidth]{EarthAtmosphereBig.jpg}}
+%------------------------------------------------------------
+    \begin{abstract}
+\noindent Como primera actividad de la materia física computacional se nos pidió realizar un resumen acerca de la estructura de la atmósfera y métodos de medición de humedad, temperatura, presión y densidad. Cambios en cualquiera de las cuatro capas llega a ser significante, pues la atmósfera impone las condiciones y comportamiento del clima cerca de la superficie e influye decisivamente la existencia de la vida en la Tierra. 
+
+A continuación se mencionará tanto las propiedades como los fenómenos físicos y los instrumentos que se utilizan para monitorear y estudiar el comportamiento climático. 
+    \end{abstract}
+%------------------------------------------------------------
+            \subsection{Objetivo}
+    \begin{itemize}
+        \item Familiarizarnos con \LaTeX puesto que es requisito para escribir documentos cient\'ifico-t\'ecnicos.
+    \end{itemize}
+%------------------------------------------------------------
+        \section{Desarrollo del tema}
+\noindent Nuestra atmósfera consiste en 4 capas; \textit{trop\'osfera, estrat\'osfera, mesosfera y la termosfera (o ionosfera)}. Cada una tiene diferentes capacidades caloríficas, presión y humedad, debido a la distancia con la superficie de la Tierra y la cercan\'ia con el Sol. Ésto afecta nuestra vida diaria y con nuevas tecnologías y programación podemos observar y monitorear éstas variables para mantener un equilibrio o alertar cuando se aproxima un desastre natural. Comenzamos analizando y explorando cada una de las capas para comprender por qué mantenemos récord de dicha información y se mencionan las herramientas utilizadas.
+
+Sabemos que entre más elevados estamos del suelo, la presión y la temperatura van disminuyendo. Las moléculas de la atmósfera son afectadas por una interacción gravitacional causando una concentración en la \textbf{\textit{tropósfera}}, la capa cercana a la superficie. Gracias a éste fenómeno natural podemos respirar sin dificultad, lo cual hace crucial para nuestras vidas asegurarnos que esté estable. El grosor de \'esta capa difiere en localizaci\'on de la tierra; en \'areas con temperaturas bajas el grosor de la trop\'osfera llega a aproximadamente 7 km de la superficie mientras que en \'areas con temperaturas altas tienden a alcanzar aprox. 17 km. \'Antes de llegar a la {\textit estrat\'osfera} nos encontramos con la tr\'otopausa, donde a partir de aqu\'i la temperatura se empieza a elevar. \'Esta parte se encagra del equilibrio t\'ermico que existe por los cambios extremos que hay en las siguientes capas.
+ 
+ En la \textbf{\textit{estrat\'ofera}} la temperatura incrementa conforme vamos subiendo, debido a que se encuentra el 90\% del ozono en \'esta capa. La capa de ozono absorbe radiaci\'on electromagn\'etica en la regi\'on ultravioleta (UV) emitidas por el Sol, lo cual incrementa la temperatura de la segunda capa atmosf\'erica. Despu\'es de la \textit{estratopausa} sigue la tercera capa atmosf\'erica.
+ 
+ Al igual que en la trop\'osfera, la temperatura en la \textbf{\textit{mesosfera}} va disminuyendo a medida que se aumenta la altitud. Es la capa m\'as fr\'ia de la atm\'osfera, lo cual causa reacciones qu\'imicas y producci\'on de iones. Mediante \'esta capa es f\'acil observar los meteoroides que se desintegran al llegar a \textbf{\textit{termosfera}}. 
+
+ En \'esta capa se concentra la mayor\'ia de la temperatura por ser la m\'as cerca al Sol. Los rayos UV, gamma y rayos X provenientes del Sol provocan la ionizaci\'on de \'atomos de sodio y mol\'eculas y elevan la temperatura de los gases. Aqu\'i podemos apreciar las auroras boreales o australes en el cielo nocturno. Tambi\'en es donde orbita la Estaci\'on Espacial Internacional, a 380 km de altura. A partir de aqu\'i se observa la capa \textit{exosfera}, donde existe el vac\'io y no var\'ia su temperatura, perdiendo sus cualidades f\'isico-qu\'imicas. 
+
+¿Pero cómo medimos la estabilidad atmosférica y con cuales herramientas?
+
+        \subsection{An\'alisis de m\'etodos de sondeo}
+\noindent Uno de los diagramas termodin\'amicos m\'as utilizados en la meteorolog\'ia es la tabla de datos (o sondeos) oblicuo-T Log-P, tomando la temperatura, humedad, viento, niveles y estabilidad como par\'ametros. \'Esta informaci\'on proviene de diversas fuentes, por ejemplo: radiosondas con paraca\'idas, globos piloto, aeronaves, modelos num\'ericos y sondas satelitales. Los datos se graf\'ican de manera electr\'onica. Se observa que la presi\'on disminuye en forma logar\'itmica a medida que aumenta la altura, lo cual se representa con lineas isob\'aricas, creando lineas isot\'ermicas inclinadas. Obteniendo \'estas gr\'aficas nos quedamos con un pron\'ostico del tiempo confiable.
+
+%---------------------------------------------
+\section*{Bibliografía}
+
+
+    \begin{enumerate} [\hspace{16pt} 1.]
+
+        \item CC BY 3.0, {\url https://en.wikipedia.org/w/index.php?curid=13589569}
+
+        \item University Corporation for Atmospheric Research. (2006-2014). Skew-T Mastery. 2014, de The COMET® Program Sitio web: {\url http://www.meted.ucar.edu/mesoprim/skewt/table_of_contents.htm}
+
+        \item NC State University. (2013). Structure of the Atmosphere. August 13, 2013, de Climate Education for K-12 Sitio web: \url{http://climate.ncsu.edu/edu/k12/.AtmStructure}
+
+        \item Wikipedia. (2016). Termosfera. 2016, de Wikipedia Sitio web: \url{https://es.wikipedia.org/wiki/Termosfera}
+
+        \item Wikipedia. (2016). Mesosfera. 2016, de Wikipedia Sitio web: \url{https://es.wikipedia.org/wiki/Mesosfera}
+
+        \item Wikipedia. (2016). Exosfera . 30 nov 2016, de Wikipedia Sitio web: \url{https://es.wikipedia.org/wiki/Exosfera}
+
+        \item Wikipedia. (2016). Estratosfera. 2016, de Wikipedia Sitio web: \url{https://es.wikipedia.org/wiki/Estratosfera}
+
+        \item Wikipedia. (2016). Stratosphere. 2016, de Wikipedia Sitio web: \url{https://en.wikipedia.org/wiki/Stratosphere}
+
+        \item Wikipedia. (2016). Tropopausa. 2016, de Wikipedia Sitio web: \url{https://es.wikipedia.org/wiki/Tropopausa}
+
+        \item Wikipedia. (2016). Troposfera. 2016, de Wikipedia Sitio web: \url{https://es.wikipedia.org/wiki/Troposfera}
+
+    \end{enumerate}
+%---------------------------------------------
+
+\end{document}
