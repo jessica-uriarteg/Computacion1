@@ -1,0 +1,142 @@
+\documentclass[12pt]{article}
+
+\usepackage{booktabs}
+\usepackage[table,x11names,dvipsnames,table]{xcolor}
+\usepackage[scientific-notation=true]{siunitx} 
+\usepackage{graphicx} 
+\usepackage{natbib} 
+\usepackage{amsmath} 
+\usepackage[spanish,activeacute]{babel}
+\usepackage{float}
+\usepackage[table]{xcolor}
+\usepackage{anysize}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pdfpages}
+\marginsize{1in}{1in}{1in}{1in} 
+\usepackage{enumerate}
+\setlength\parindent{30pt}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%\setlength\parindent{0pt} 
+
+\renewcommand{\labelenumi}{\alph{enumi}.}
+
+\newcolumntype{a}{>{\columncolor[gray]{0.9}}c}
+
+%-----------------------------------------------------------
+\title{Actividad2-Tucson}
+\begin{document}
+%-----------------------------------------------------------
+\begin{center}
+
+
+\includegraphics[width=0.3\textwidth]{unison-logo.png}~\\[1cm]
+
+\textsc{\LARGE Universidad de Sonora}\\[0.1cm]
+\textsc{Divisi\'on de Ciencias Exactas y Naturales}\\[0.1cm]
+\textsc{Departamento de F\'isica}\\[1.5cm]
+
+\HRule \\[0.4cm]
+\textsc{Física computacional I}\\[0.1cm]
+\textsc{Actividad 2- Limpieza y preparación de datos usando Emacs}
+\HRule \\[1.5cm]
+
+
+
+
+
+\textsc{Jessica Isamar Uriarte García\\[1.0cm]}
+
+\textsc{Docente:\\Carlos Lizarraga-Celaya\\[0.1cm]}
+\vfill
+\textsc{\today \\[0.1cm]}
+\end{center}
+\newpage
+%-----------------------------------------------------------
+\section{Introducción}
+%-----------------------------------------------------------
+\begin{abstract}
+\noindent Para cumplir con los objetivos de ésta actividad, abrimos un documento en emacs y bajamos datos recolectados por sondas atmosféricas que se lanzan varias o una vez al día en la estación 72274 (Tucson, Az). 
+\end{abstract}
+%-----------------------------------------------------------
+\subsection{Objetivos}
+
+\begin{itemize}
+\item Repasar comandos básicos para navegar fácilmente en la terminal de Linux.
+\item Familiarizarnos con el editor de texto Gnu Emacs.
+\item Realizar una limpieza de datos y saber prepararlos para analizar y graficar los resultados. 
+\end{itemize}
+%-----------------------------------------------------------
+\section{Desarrollo}
+\noindent Utilizamos datos recolectados por sondas atmosféricas en Tucson, Arizona de la estación 72274, organizado por la Universidad de Wyoming. \cite{bib}
+Con ayuda del comando egrep en linux logramos darnos cuenta que en \'esta ciudad los globos sondas son lanzadas cada 12 horas los 365 d\'ias del año, ya que todos los datos estaban completos. Con ésto, creamos un archivo de datos de variables como función de altura para el día primero de cada mes a las 00 horas. Con la info que teníamos de los globos sondeos a las 12 hrs graficamos (en gnuplot) la presión atmosférica como función de altitud y la temperatura como función de altitud. 
+\begin{center}
+\subsection*{Presi\'on vs. Altura}
+\includegraphics[width=0.6\linewidth]{Pres-altitud.png}
+\subsection*{Temperatura vs. Altura}
+\includegraphics[width=0.6\linewidth]{Temp-altitud.png}
+\end{center}
+
+Podemos observar que la temperatura sube algunos metros y decae hasta legar a casi 20000 metros (20 km), donde vuelve a subir. Al compararlo con otras gr\'aficas, supimos que se trataba del cambio de la tropopausa a la estrat\'osfera. \cite{b}
+
+\subsection{Script en Bash}
+
+\noindent Despu\'es de descargar y correr el script proporcionado por la Universidad de Wyoming, obtuvimos los datos diarios de la estaci\'on de Tucson(con la ayuda del comando cat), nombramos al archivo como sondeos.txt. Para empezar la limpieza de datos y solo quedarnos con la informaci\'on necesaria, utilizamos los comandos egrep y cat. As\'i obtuvimos los datos de sondeo para los primeros d\'ias de cada mes a las 00 horas. Nos quedamos con el siguiente script1.sh:
+\begin{tiny}
+\begin{verbatim}
+# Descarga por mes. Cambiar año de consulta. Ajustar el numero de estacion.
+#!/bin/bash
+ 
+# Despues de editar: chmod 755 script1.sh
+# Para ejecutar: ./script1.sh
+ 
+IFS=":"
+LISTM31="01:03:05:07:08:10:12"
+#LISTM31="01:03:05:07"
+LISTM30="04:06:09:11"
+#LISTM30="04:06"
+LISTM28="02"
+ 
+# Script para bajar info por mes. Año 2016, dentro del URL:  YEAR=2015
+# Months 31 days
+for i in $LISTM31 ; do
+    /usr/bin/wget "http://weather.uwyo.edu/cgi-bin/sounding?region=naconf&TYPE=TEXT%3ALIST&YEAR=2016&MONTH=$i&FROM=0100&TO=3112&STNM=72274"
+       /bin/sleep 5
+done
+# Months 30 days
+for i in $LISTM30 ; do
+    /usr/bin/wget "http://weather.uwyo.edu/cgi-bin/sounding?region=naconf&TYPE=TEXT%3ALIST&YEAR=2016&MONTH=$i&FROM=0100&TO=3012&STNM=72274"
+       /bin/sleep 5
+done
+# Feb. 28 days
+for i in $LISTM28 ; do
+    /usr/bin/wget "http://weather.uwyo.edu/cgi-bin/sounding?region=naconf&TYPE=TEXT%3ALIST&YEAR=2016&MONTH=$i&FROM=0100&TO=2812&STNM=72274"
+       /bin/sleep 5
+done
+
+\end{verbatim}
+\end{tiny}
+
+Se encontraron 12 observaciones, lo cual nos afirma que se mand\'o un globo para medici\'on sin falta cada d\'ia 1 del mes a las 00 horas. 
+%-----------------------------------------------------------
+\section{Conclusi\'on}
+\noindent Es bastante sencillo descargar datos meteorol\'ogicos a traves de la red para usarlos a nuestro favor. Podemos buscar anomal\'ias, hacer comparaciones entre ciudades o diferentes pa\'ises, y jugar con par\'ametros que contribuyan a nuestra investigaci\'on. Claro, se vale hacer la limpieza de datos manualmente para quedarse solo con lo que necesitamos, pero al cumplir con el objetivo de \'este trabajo comprobamos que es impractico e inecesario. 
+
+Conocimos comandos en ambos sistemas operativos,en mi caso, Linux y iOS, para crear y bajar scripts, como tambi\'en conocimos comandos en Bash en Emacs para filtrar y almacenar los datos importantes. Ahorramos tiempo, esfuerzo y energ\'ia para concentrarnos y trabajar en el contenido de nuestra investigaci\'on. 
+%-----------------------------------------------------------
+
+\begin{thebibliography}{2}
+\bibitem{bib} Larry Oolman (ldoolman@uwyo.edu). (2017). Department of Atmospheric Science/Weather. 2017, de College of Engineering Sitio web:\url{http://weather.uwyo.edu/upperair/sounding.html}
+\bibitem{b} NC State University. (2013). Structure of the Atmosphere. August 13,2013, de Climate.ncsu Sitio web: \url{http://climate.ncsu.edu/edu/k12/.AtmStructure}
+
+\end{thebibliography}
+
+
+
+
+
+
+
+\end{document}
