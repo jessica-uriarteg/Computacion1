@@ -1,0 +1,135 @@
+\documentclass[12pt]{article}
+
+\usepackage{booktabs}
+\usepackage[table,x11names,dvipsnames,table]{xcolor}
+\usepackage[scientific-notation=true]{siunitx} 
+\usepackage{graphicx} 
+\usepackage{natbib} 
+\usepackage{amsmath} 
+\usepackage[spanish,activeacute]{babel}
+\usepackage{float}
+\usepackage[table]{xcolor}
+\usepackage{anysize}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pdfpages}
+\marginsize{1in}{1in}{1in}{1in} 
+\usepackage{enumerate}
+\setlength\parindent{30pt}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%\setlength\parindent{0pt} 
+
+
+
+
+\renewcommand{\labelenumi}{\alph{enumi}.}
+
+\newcolumntype{a}{>{\columncolor[gray]{0.9}}c}
+
+
+%-----------------------------------------------------------
+\begin{document}
+%------------------------------------------------------------
+    \begin{center}
+
+
+\includegraphics[width=0.3\textwidth]{unison-logo.png}~\\[1cm]
+
+\textsc{\LARGE Universidad de Sonora}\\[0.1cm]
+\textsc{Divisi\'on de Ciencias Exactas y Naturales}\\[0.1cm]
+\textsc{Departamento de F\'isica}\\[1.5cm]
+
+\HRule \\[0.4cm]
+\textsc{Física computacional I}\\[0.1cm]
+\textsc{Actividad 5- {\color{teal}\textbf Mareas y corrientes}}
+\HRule \\[1.5cm]
+
+
+\textsc{Jessica Isamar Uriarte García\\[1.0cm]}
+
+\textsc{Docente:\\Carlos Lizarraga-Celaya\\[0.1cm]}
+\vfill
+\textsc{\today \\[0.1cm]}
+    \end{center}
+\newpage
+
+%------------------------------------------------------------
+        \section{Introducción}
+
+%------------------------------------------------------------
+    \begin{abstract}
+\noindent Nos encontramos en la segunda parte del curso, donde abarcaremos el tema de mareas y corrientes de las costas Mexicanas y estadounidenses. En \'este reporte incluyo un resumen breve acerca mareas\cite{a} en general, informaci\'on sobre las corrientes marinas de California y la Isla Tibur\'on y un gr\'afica mostrando la superposici\'on de diferentes arm\'onicos. 
+    \end{abstract}
+%------------------------------------------------------------
+            \subsection{Objetivo}
+    \begin{itemize}
+        \item Enfocarnos en el fenómeno de la variación de los niveles del mar en varios puntos costeros para estudiar la dinámica de las mareas, producto de las fuerzas gravitacionales de la Luna, el Sol, la rotación de la Tierra y otras fuerzas externas.
+        \item Crear una gr\'afica con Matplotlib con informaci\'on de 30-31 d\'ias acerca de las mareas en la Isla Tiburon en Sonora. 
+    \end{itemize}
+%------------------------------------------------------------
+        \section{Desarrollo del tema}
+\noindent ¿Porque hay corrientes marinas? ¿Qué los origina? ¿Nos afecta? Esto nos lo preguntamos desde 150 B.C., donde Seleucus Seleucia predijo que se deb\'ian a la fuerza de la Luna. Su estudio fue importante en el desarrollo del heliocentrismo, donde poco tiempo despu\'es pudo ser relacionado con fuerzas gravitatorias del sol y la Luna. En la Edad Medieval se empez\'o a descubrir que el viento tambi\'en jugaba un papel importante, \'esto fue planteado por el astr\'onomo Musulman Abu Ma'shar (d. circa 886). En 1632, Galileo Galilei dio su explicaci\'on mediante una teor\'ia en su libro {\textit Dialogue on the Tides} donde quiso comprobar mediante evidencia mec\'anica que las mareas se deb\'ian al movimiento de la Tierra alrededor del Sol. Isaac Newton fue el primero en explicar las mareas como el producto de atracciones gravitacionales de masas astronómicas. 
+
+En 1860 se introdujo por primera vez el an\'anisis harm\'onico de las mareas, gracias a William Thomson. 
+
+\subsection*{Teor\'ia de las mareas \small{\cite{b}}}
+Existe un sistema de ecuaciones diferenciales parciales formulada por Laplace que relaciona el flujo horizontal del oceano con la altura de la superficie terrestre, establecido como la primera teoría dinámica para mareas. \'Esto se sigue usando hoy en d\'ia para modelar las fuerzas, y confirma que la profundidad del océano es menor que su largo horizontal. Es posible predecir la altura de la marea encontrando sus componentes harmónicos. Para encontrar una función que varía periódicamente, recurrimos al análisis armónico del movimiento de las mareas de Fourier de William Thomson\cite{c}. Estos patrones son compuestos por ondas senoidales de armónicos (varias frecuencias) donde cada término equivale a:
+\begin{equation}
+A cos(\omega t+p)
+\end{equation}
+Donde A es la aplitud, $\omega$ la frecuencia angular, t el tiempo y p el desplazamiento de fase de la luna o sol en t=0. Estas despu\'es son acomodadas en ciclos o epiciclos (armonicos acomodados en orbitas el\'ipticas). Al conjunto de seis enteros en una notaci\'on se le conoce como el \textbf{n\'umero Doodson}, implementado por el ocean\'ografo brit\'anico Dr. Arthur Thomas Doodson alrededor del año 1920. En 1944, Doodson predijo la siguiente marea baja utilizando los patrones armónicos para ayudar a Nazi invadir Francia en la Segunda Guerra Mundial\cite{d}. 
+
+Las mareas podrían ser utilizadas para generar energía a través de una turbina de agua, inclusio ayuda a navegar el océano (utilizados en tablas náuticas).
+\begin{figure}[H]
+\includegraphics[width=1 \textwidth]{example.png}
+\caption{Cada color corresponde a una amplitud distinta; rojo indica alto y az\'ul bajo.}
+\end{figure}
+%------------------------------------------------------------
+
+\newpage
+\subsection*{Gráficas de Altura vs. Tiempo}
+
+Se nos pidió descargar un mes de información de mareas de una bahía Mexicana y otra Estadounidense. A continuación se mostrarán las gráficas programadas en pandas (python).
+
+\subsubsection*{Isla Tibur\'on, Sonora}
+Isla Tibur\'on es la isla mexicana m\'as grande del golfo de California. "La isla está deshabitada, a excepción de una instalación militar ubicada en la zona oriental de la isla. Está administrada como una reserva ecológica por el gobierno de los seris, en conjunto con el gobierno Federal. En siglos anteriores, la isla fue habitada por tres grupos ("bandas") de los seris: los Tahejöc comcaac, los heeno comcaac y los xiica Hast ano coii (en una parte). Esta isla es para los seris un sitio sagrado, ya que consideran la isla como la cuna de su pueblo.
+
+La fauna local está constituida por venados bura, borregos cimarrones, zorros y coyotes. El punto más alto de la isla es el cerro San Miguel, a 1450 metros sobre el nivel del mar. La isla se considera propiedad de los seris, siendo la tierra tradicional de algunos clanes o grupos de este pueblo probablemente desde hace varios siglos. En 1963 fue convertida en reserva natural y refugio de la fauna." \cite{f}
+
+\begin{center}
+\includegraphics[width=1 \textwidth]{IslaTiburon.png}
+\end{center}
+%------------------------------------------------------------
+
+\newpage
+\subsubsection*{Old Tampa Bay, Florida}
+"La Bah\'ia de Florida es un gran puerto natural y estuario del golfo de México en la costa oeste central de Florida, que comprende la bahía de Hillsborough, la bahía de Tampa Vieja (Old Tampa Bay), la bahía de Tampa Central (Middle Tampa Bay) y la bahía de Tampa Baja (Lower Tampa Bay)."\cite{g}
+
+\begin{center}
+\includegraphics[width=1 \textwidth]{TampaJsk.png}
+\end{center}
+
+A comparaci\'on con la gr\'afica trazada en NOAA:
+\\
+\includegraphics[width=1 \textwidth]{TampaNOAA.png}
+
+%---------------------------------------------
+\section*{}
+
+\begin{thebibliography}{2}
+\bibitem{a} Wikipedia. (2017). Tide. 2017, de Wikipedia Sitio web: \url{https://en.wikipedia.org/wiki/Tide}
+\bibitem{b} Wikipedia. (2017). Theory of tides. 2017, de Wikipedia Sitio web: \url{https://en.wikipedia.org/wiki/Theory_of_tides}
+\bibitem{c} Wikipedia. (2017). Fourier analysis. 2017, de Wikipedia Sitio web: \url{https://en.wikipedia.org/wiki/Fourier_analysis}
+\bibitem{d} Wikipedia. (2017). Arthur Thomas Doodson. 2017, de Wikipedia Sitio web: \url{https://en.wikipedia.org/wiki/Arthur_Thomas_Doodson}
+\bibitem{e} J.I. González. (MAR V1.0 2011). Oceanografia fisica. 2015, de CICESE Sitio web: \url{http://predmar.cicese.mx/calendarios/}
+\bibitem{f} Wikipedia. (2017). Isla Tibur\'on . 2017, de Wikipedia Sitio web: \url{https://es.wikipedia.org/wiki/Isla_Tiburón}
+\bibitem{g} Wikipedia. (2017). Bahía de Tampa . 2017, de Wikipedia Sitio web: \url{https://es.wikipedia.org/wiki/Bah´ía_de_Tampa}
+\end{thebibliography}
+
+
+
+%---------------------------------------------
+
+\end{document}
